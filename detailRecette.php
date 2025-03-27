@@ -40,7 +40,7 @@
             ");
     
 
-    $sqlQuery = 'SELECT i.nom_ingredient
+    $sqlQuery = 'SELECT i.nom_ingredient, co.quantite, co.unite_de_mesure, i.prix
                     FROM ingredient i
                     INNER JOIN contenir co ON co.id_ingredient = i.id_ingredient
                     WHERE co.id_recette = :id';
@@ -55,7 +55,8 @@
     <ul>
     <?php
     foreach ($ingredients as $ingredient){
-        echo ("<li>$ingredient[nom_ingredient] </li>");
+        echo ("<li>$ingredient[quantite] $ingredient[unite_de_mesure]
+                de $ingredient[nom_ingredient]. Prix unitaire : $ingredient[prix] €.</li>");
     }
     ?>
     </ul>
