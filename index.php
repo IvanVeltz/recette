@@ -18,9 +18,13 @@
         die('Erreur : '.$e->getMessage());
     }
 
-    $sqlQuery = 'SELECT * FROM recette';
+  
+    $sqlQuery = 'SELECT * FROM recette WHERE temps_de_preparation >= :time' ;
+
     $recipesStatement = $mysqlClient->prepare($sqlQuery);
-    $recipesStatement->execute();
+    $recipesStatement->execute([
+    'time' => 10
+    ]);
     $recipes = $recipesStatement->fetchAll();
 
     foreach ($recipes as $recipe){
